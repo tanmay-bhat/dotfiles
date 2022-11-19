@@ -11,20 +11,16 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   -
+    command: ./setup/setup-homebrew.sh
+    description: Installing Homebrew and brew packages
+    stdout: true
+    stderr: true  
+  -
     command: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     description: Installing oh-my-zsh
     stdout: true
     stderr: true
-  -
-    command: ./setup/setup-homebrew.sh
-    description: Installing Homebrew and brew packages
-    stdout: true
-    stderr: true
-  - 
-    command: chsh -s $(which zsh)
-    description: Making zsh the default shell
-    stdout: true
-    stderr: true
+
 
 - link:
 #shell configs
