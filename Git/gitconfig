@@ -1,0 +1,17 @@
+#default editor for git
+[core]
+    editor = code --wait
+    pager = diff-so-fancy | less --tabs=4 -RFX
+
+#default branch is main
+[init]
+    defaultBranch = main
+
+#default staus to short view
+[status]
+    short = true
+
+#user config
+[user]
+	name = Tanmay Bhat
+	email = tanmaybhat24@gmail.com

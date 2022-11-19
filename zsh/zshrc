@@ -1,0 +1,30 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
+
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="mm/dd/yyyy"
+
+# Commands starting from " " (whitespace) won't be saved in history:
+HIST_IGNORE_SPACE="true"
+
+plugins=(
+    gitfast
+    helm
+    fzf
+    extract
+    command-not-found
+    kubectl
+    )
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration:
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Custom envs:
+source "$ZSH/oh-my-zsh.sh"
