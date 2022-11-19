@@ -16,7 +16,7 @@
     stdout: true
     stderr: true
   -
-    command: ./macos/setup-homebrew.sh
+    command: ./setup/setup-homebrew.sh
     description: Installing Homebrew and brew packages
     stdout: true
     stderr: true
