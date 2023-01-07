@@ -1,8 +1,6 @@
 ## Tanmay Bhat's dotfiles
 
-Installation : 
+Prerequisite :
 
-```
-git clone https://github.com/tanmay-bhat/dotfiles.git --recursive
-./install
-```
+- oh-my-zsh
+- homebrew
