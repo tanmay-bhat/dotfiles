@@ -64,7 +64,7 @@ function aws_secrets_list() {
     aws secretsmanager list-secrets --profile $1 --region $region | jq -r '.SecretList[].Name'
 }
 
-#function to get the value of a secret, where $1 is the profile name, $2 is the region, and $3 is the secret name
+#function to get the value of a specified secret
 function aws_secrets_retrive() {
 
     #define help
@@ -78,3 +78,17 @@ function aws_secrets_retrive() {
 
     aws secretsmanager --profile $1 get-secret-value --secret-id $2 --region $region | jq -r '.SecretString'
 }
+
+#function to decrypt base64 encoded kubernetes secret.
+function k8s_decrypt() {
+    #define help
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        echo "Usage: k8s_decrypt <secret name> <namespace>"
+        return 0
+    fi
+
+    #default namespace is default if not specified
+    namespace=${2-'default'}
+
+    kubectl get secret $1 -n $namespace -o json | jq -r '.data | map_values(@base64d)'
+} 
