@@ -25,6 +25,10 @@ source $ZSH/oh-my-zsh.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+
+# Disable the EOL % character.
+EXPORT PROMPT_EOL_MARK=''
+
 ##############################################################################
 # History settings
 ##############################################################################
@@ -40,6 +44,10 @@ setopt HIST_IGNORE_ALL_DUPS
 alias gs='gcloud compute ssh'
 alias gsp='gcloud config set project'
 
+
+# Networking alias
+public_ip='curl wgetip.com'
+private_ip='hostname -i'
 
 #fzf
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
