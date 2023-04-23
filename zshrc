@@ -27,7 +27,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 # Disable the EOL % character.
-EXPORT PROMPT_EOL_MARK=''
+export PROMPT_EOL_MARK=''
 
 ##############################################################################
 # History settings
