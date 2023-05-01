@@ -15,7 +15,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
-plugins=(git colored-man-pages colorize pip python brew macos kube-ps1 kubectl kube-aliases)
+plugins=(git colored-man-pages colorize kube-ps1 kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
