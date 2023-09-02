@@ -46,7 +46,8 @@ alias public_ip='curl wgetip.com'
 
 #kube ps1 settings
 source /usr/local/opt/kube-ps1/share/kube-ps1.sh
-KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_SYMBOL_ENABLE=true
+KUBE_PS1_NS_ENABLE=false
 PS1='$(kube_ps1)'$PS1
 
 #aws ps1 settings
