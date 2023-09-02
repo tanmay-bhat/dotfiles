@@ -7,24 +7,19 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# Update automatically without asking
+zstyle ':omz:update' mode auto
 
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-plugins=(git colored-man-pages colorize kube-ps1 kubectl)
+plugins=(aws git colored-man-pages colorize kube-ps1 kubectl)
 
 source $ZSH/oh-my-zsh.sh
+#PROMPT=$PROMPT'$(aws_ps1) '
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 
 # Disable the EOL % character.
 export PROMPT_EOL_MARK=''
@@ -49,13 +44,13 @@ alias gsp='gcloud config set project'
 public_ip='curl wgetip.com'
 private_ip='hostname -i'
 
-#fzf
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
 #kube ps1 settings
 source /usr/local/opt/kube-ps1/share/kube-ps1.sh
 PS1='$(kube_ps1)'$PS1
+
+#aws ps1 settings
+#source /usr/local/share/aws-ps1/aws-ps1.plugin.zsh
+#PROMPT=$PROMPT'$(aws_ps1) '
 
 #AWS alias functions.
 
@@ -64,12 +59,12 @@ function aws_secrets_list() {
 
     #define help
     if [[ $1 == "-h" || $1 == "--help" ]]; then
-        echo "Usage: aws_secrets_list <profile> <region>"
+        echo "Usage: aws_secrets_list <profile> <region> <filter string>"
         return 0
     fi
     #default region is us-west-2 if not specified
     region=${2-'us-west-2'}
-    aws secretsmanager list-secrets --profile $1 --region $region | jq -r '.SecretList[].Name'
+    aws secretsmanager list-secrets --profile $1 --region $region | jq -r ".SecretList[].Name" | grep -i $3
 }
 
 #function to get the value of a specified secret
@@ -77,7 +72,7 @@ function aws_secrets_retrive() {
 
     #define help
     if [[ $1 == "-h" || $1 == "--help" ]]; then
-        echo "Usage: aws_secrets_retrive <profile> <secret name> <region>"
+        echo "Usage: aws_secrets_retrive <profile> <secret_name> <region>"
         return 0
     fi
 
@@ -99,4 +94,7 @@ function k8s_decrypt() {
     namespace=${2-'default'}
 
     kubectl get secret $1 -n $namespace -o json | jq -r '.data | map_values(@base64d)'
-} 
+}
+
+# Postgres client path
+#export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
