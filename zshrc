@@ -10,10 +10,9 @@ ZSH_THEME="robbyrussell"
 # Update automatically without asking
 zstyle ':omz:update' mode auto
 
-plugins=(aws git colored-man-pages colorize kube-ps1 kubectl)
+plugins=(git colored-man-pages colorize kube-ps1 kubectl)
 
 source $ZSH/oh-my-zsh.sh
-#PROMPT=$PROMPT'$(aws_ps1) '
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -24,6 +23,8 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Disable the EOL % character.
 export PROMPT_EOL_MARK=''
 
+#load autocomplete once a day, not every time a new shell is opened
+export skip_global_compinit=1
 ##############################################################################
 # History settings
 ##############################################################################
@@ -41,16 +42,15 @@ alias gsp='gcloud config set project'
 
 
 # Networking alias
-public_ip='curl wgetip.com'
-private_ip='hostname -i'
+alias public_ip='curl wgetip.com'
 
 #kube ps1 settings
 source /usr/local/opt/kube-ps1/share/kube-ps1.sh
+KUBE_PS1_SYMBOL_ENABLE=false
 PS1='$(kube_ps1)'$PS1
 
 #aws ps1 settings
-#source /usr/local/share/aws-ps1/aws-ps1.plugin.zsh
-#PROMPT=$PROMPT'$(aws_ps1) '
+PS1='$(aws_ps1)'$PS1
 
 #AWS alias functions.
 
@@ -95,6 +95,3 @@ function k8s_decrypt() {
 
     kubectl get secret $1 -n $namespace -o json | jq -r '.data | map_values(@base64d)'
 }
-
-# Postgres client path
-#export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
