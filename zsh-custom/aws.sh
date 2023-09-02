@@ -58,14 +58,9 @@ function asr() {
   fi
 }
 
-# Set ReadOnly profile as default profile
+# Set ReadOnly profile as default profile and us-west-2 as default region
 asp prod-observer
 asr us-west-2
-
-#function to update the PS1 prompt with current AWS profile and region
-# function aws_ps1() {
-#   echo "[$AWS_PROFILE:$AWS_REGION]"
-# }
 
 function aws_ps1() {
   local profile_color="\e[36m"  # Cyan color
