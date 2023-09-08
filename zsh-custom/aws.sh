@@ -1,4 +1,3 @@
-
 # function to print current AWS profile
 function agp() {
   echo $AWS_PROFILE
@@ -59,13 +58,16 @@ function asr() {
 }
 
 # Set ReadOnly profile as default profile and us-west-2 as default region
-asp prod-observer
-asr us-west-2
+# asp prod-observer
+# asr us-west-2
 
+# function to update the PS1 prompt with current AWS profile and region
 function aws_ps1() {
-  local profile_color="\e[36m"  # Cyan color
-  local region_color="\e[32m"   # Green color
-  local reset_color="\e[0m"     # Reset color
+  local profile_color="%{$(tput setaf 6)%}"  # Cyan color
+  local region_color="%{$(tput setaf 2)%}"   # Green color
+  local reset_color="%{$(tput sgr0)%}"      # Reset color
 
-  echo -e "($profile_color$AWS_PROFILE$reset_color:$region_color$AWS_REGION$reset_color)"
+  export AWS_PROFILE="prod-observer"
+  export AWS_REGION="us-west-2"
+  echo -en "($profile_color$AWS_PROFILE$reset_color:$region_color$AWS_REGION$reset_color)"
 }
