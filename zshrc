@@ -59,6 +59,9 @@ PS1='$(aws_ps1)$(kube_ps1)'$PS1
 alias ctx='kubectx'
 alias ns='kubens'
 
+#kubectl autocompletion 
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+
 
 #AWS alias functions.
 
@@ -103,4 +106,6 @@ function k8s_decrypt() {
 
     kubectl get secret $1 -n $namespace -o json | jq -r '.data | map_values(@base64d)'
 }
+
+#postres config
 export PATH="/usr/local/opt/libpq/bin:$PATH"
