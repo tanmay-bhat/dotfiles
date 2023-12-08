@@ -44,13 +44,21 @@ alias gsp='gcloud config set project'
 # Networking alias
 alias public_ip='curl wgetip.com'
 
-#kube-ps1 settings
+#aws ps1 settings
+#PS1='$(aws_ps1)'$PS1
+
+#kube ps1 settings
 source /usr/local/opt/kube-ps1/share/kube-ps1.sh
 KUBE_PS1_SYMBOL_ENABLE=true
 KUBE_PS1_NS_ENABLE=true
+#PS1='$(kube_ps1)'$PS1
 
-# Update PS1 with K8S and AWS details
-PS1=$(aws_ps1)$(kube_ps1)$PS1
+PS1='$(aws_ps1)$(kube_ps1)'$PS1
+
+#Kubectx alias
+alias ctx='kubectx'
+alias ns='kubens'
+
 
 #AWS alias functions.
 
@@ -95,3 +103,4 @@ function k8s_decrypt() {
 
     kubectl get secret $1 -n $namespace -o json | jq -r '.data | map_values(@base64d)'
 }
+export PATH="/usr/local/opt/libpq/bin:$PATH"
