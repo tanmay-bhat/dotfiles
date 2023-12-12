@@ -109,3 +109,7 @@ function k8s_decrypt() {
 
 #postres config
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# set prod readOnly profile and us-west-2 as default value when starting a new terminal
+asp prod-observer
+asr us-west-2
