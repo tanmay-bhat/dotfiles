@@ -39,20 +39,7 @@ function asr() {
   fi
 }
 
-# function to print current AWS profile
-function agp() {
-  echo $AWS_PROFILE
-}
-
-# function to print current AWS region
-function agr() {
-  echo $AWS_REGION
-}
-
-function aslo() {
-  aws sso login
-}
-
+# function to list all the profiles
 function alp() {
   aws_profiles
 }
