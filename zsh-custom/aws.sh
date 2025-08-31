@@ -44,6 +44,21 @@ function alp() {
   aws_profiles
 }
 
+# function to print current AWS profile
+function agp() {
+  echo $AWS_PROFILE
+}
+
+# function to print current AWS region
+function agr() {
+  echo $AWS_REGION
+}
+
+function aslo() {
+  aws sso login
+}
+
+
 # function to update the PS1 prompt with current AWS profile and region
 function aws_ps1() {
   local profile_color="%{$(tput setaf 6)%}"  # Cyan color
